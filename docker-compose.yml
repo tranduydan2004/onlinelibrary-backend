@@ -1,0 +1,65 @@
+services:
+  # Dịch vụ Cơ sở dữ liệu PostgreSQL
+  onlinelibrary-db:
+    image: postgres:16 # Sử dụng image PostgreSQL 16
+    container_name: library-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: online_library # Tên CSDL phải khớp với CSDL của bạn
+      POSTGRES_USER: ${DB_USER}       # Lấy từ file .env
+      POSTGRES_PASSWORD: ${DB_PASSWORD} # Lấy từ file .env
+    ports:
+      - "5432:5432" # Ánh xạ cổng 5432 của máy thật vào 5432 của container
+    volumes:
+      - postgres-data:/var/lib/postgresql/data # Lưu trữ data ra ngoài container
+    networks:
+      - library-network
+    healthcheck:
+      # Kiểm tra xem PostgreSQL đã sẵn sàng nhận kết nối chưa
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d online_library"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Dịch vụ OnlineLibrary.API
+  onlinelibrary-api:
+    container_name: library-api
+    # Build từ Dockerfile trong thư mục OnlineLibrary.API
+    build:
+      context: . # Context là thư mục gốc (chứa .sln)
+      dockerfile: OnlineLibrary.API/Dockerfile # Đường dẫn đến Dockerfile của bạn
+    restart: unless-stopped
+    ports:
+      # Ánh xạ cổng 8080 (http) và 8081 (https) của máy thật
+      # Dựa theo file launchSettings.json của bạn
+      - "8080:8080"
+      # - "8081:8081"
+    environment:
+      # Ghi đè các cài đặt trong appsettings.json
+      ASPNETCORE_URLS: http://+:8080
+      # ASPNETCORE_HTTPS_PORTS: 8081
+      ASPNETCORE_ENVIRONMENT: Development
+      
+      # Ghi đè Connection String để trỏ vào service 'postgres-db'
+      ConnectionStrings__DefaultConnection: ${DB_CONNECTION_STRING}
+      
+      # Ghi đè cài đặt JWT
+      Jwt__Key: ${JWT_KEY}
+      Jwt__Issuer: ${JWT_ISSUER}
+      Jwt__Audience: ${JWT_AUDIENCE}
+    networks:
+      - library-network
+    depends_on:
+      onlinelibrary-db:
+        # Chỉ khởi chạy API khi DB đã ở trạng thái 'healthy'
+        condition: service_healthy
+
+# Định nghĩa volumes (để lưu trữ data)
+volumes:
+  postgres-data:
+    driver: local
+
+# Định nghĩa network (để 2 container thấy nhau)
+networks:
+  library-network:
+    driver: bridge

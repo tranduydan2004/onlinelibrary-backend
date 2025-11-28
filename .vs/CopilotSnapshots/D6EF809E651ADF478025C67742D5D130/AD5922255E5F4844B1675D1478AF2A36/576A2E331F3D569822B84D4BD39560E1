@@ -1,0 +1,97 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using OnlineLibrary.Domain.Entities;
+using OnlineLibrary.Infrastructure.Data;
+using OnlineLibrary.Application.Common;
+using OnlineLibrary.Application.DTOs;
+using System.Security;
+using BCrypt.Net;
+
+namespace OnlineLibrary.Application.Services
+{
+    public class AuthService : IAuthService
+    {
+        private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _configuration;
+
+        public AuthService(ApplicationDbContext context, IConfiguration configuration)
+        {
+            _context = context;
+            _configuration = configuration;
+        }
+
+        public async Task<Result<AuthResponseDto>> RegisterAsync(string username, string password)
+        {
+            if (await _context.Users.AnyAsync(u => u.Username == username))
+            {
+                return Result<AuthResponseDto>.Fail("Tên đăng nhập đã tồn tại.");
+            }
+
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
+            var user = new User
+            {
+                Username = username,
+                PasswordHash = hashedPassword,
+                Role = "User", // Mặc định role là User
+                IsLocked = false
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            var token = GenerateJwtToken(user);
+            var response = new AuthResponseDto(token, user.Username, user.Role);
+
+            return Result<AuthResponseDto>.Ok(response);
+        }
+
+        public async Task<Result<AuthResponseDto>> LoginAsync(string username, string password)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+
+            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+            {
+                return Result<AuthResponseDto>.Fail("Tên đăng nhập hoặc mật khẩu không chính xác.");
+            }
+
+            if (user.IsLocked)
+            {
+                return Result<AuthResponseDto>.Fail("Tài khoản của bạn đã bị khoá.");
+            }
+
+            var token = GenerateJwtToken(user);
+            var response = new AuthResponseDto(token, user.Username, user.Role);
+
+            return Result<AuthResponseDto>.Ok(response);
+        }
+
+        private string GenerateJwtToken(User user)
+        {
+            var jwtSettings = _configuration.GetSection("Jwt");
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            var token = new JwtSecurityToken(
+                issuer: jwtSettings["Issuer"],
+                audience: jwtSettings["Audience"],
+                claims: claims,
+                expires: DateTime.UtcNow.AddHours(1), // Token hết hạn sau 1 giờ
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+    }
+}

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="OnlineLibrary.API/OnlineLibrary.API.csproj" />
+  <Project Path="OnlineLibrary.Application/OnlineLibrary.Application.csproj" />
+  <Project Path="OnlineLibrary.Domain/OnlineLibrary.Domain.csproj" />
+  <Project Path="OnlineLibrary.Infrastructure/OnlineLibrary.Infrastructure.csproj" />
+</Solution>

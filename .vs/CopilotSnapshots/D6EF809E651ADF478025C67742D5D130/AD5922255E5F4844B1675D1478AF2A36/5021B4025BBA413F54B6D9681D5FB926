@@ -1,0 +1,8 @@
+﻿namespace OnlineLibrary.Application.DTOs
+{
+    public class LoanDtos
+    {
+        public record LoanRequestDto(int BookId);
+        public record LoanHistoryDto(int Id, string BookTitle, DateTimeOffset requestDate, DateTimeOffset? DueDate, string Status);
+    }
+}

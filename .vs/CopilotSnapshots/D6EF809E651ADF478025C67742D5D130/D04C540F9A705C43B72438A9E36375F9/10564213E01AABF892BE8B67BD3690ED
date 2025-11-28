@@ -1,0 +1,8 @@
+﻿namespace OnlineLibrary.Application.Services
+{
+    public interface IAuthService
+    {
+        Task<Results<AuthResponseDto>> RegisterAsync(string username, string password);
+        Task(Results<AuthResponseDto>) LoginAsync(string username, string password);
+    }
+}

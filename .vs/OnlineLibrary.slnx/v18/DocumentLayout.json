@@ -1,0 +1,614 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\projects\\Web\\OnlineLibrary\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|solutionrelative:onlinelibrary.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|solutionrelative:onlinelibrary.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\iloanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\iloanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\useradminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\useradminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\loanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\loanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\loanadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\loanadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\iuseradminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\iuseradminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\iloanadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\iloanadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\ibookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\ibookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\ibookadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\ibookadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\bookadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\bookadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\dtos\\authdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\dtos\\authdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DABBE01D-793E-533D-E4A9-59EEFA9288DD}|OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DABBE01D-793E-533D-E4A9-59EEFA9288DD}|OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj|solutionrelative:onlinelibrary.domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DABBE01D-793E-533D-E4A9-59EEFA9288DD}|OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.domain\\entities\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DABBE01D-793E-533D-E4A9-59EEFA9288DD}|OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj|solutionrelative:onlinelibrary.domain\\entities\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DABBE01D-793E-533D-E4A9-59EEFA9288DD}|OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.domain\\entities\\bookinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DABBE01D-793E-533D-E4A9-59EEFA9288DD}|OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj|solutionrelative:onlinelibrary.domain\\entities\\bookinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DABBE01D-793E-533D-E4A9-59EEFA9288DD}|OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.domain\\entities\\loanrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DABBE01D-793E-533D-E4A9-59EEFA9288DD}|OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj|solutionrelative:onlinelibrary.domain\\entities\\loanrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.api\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|solutionrelative:onlinelibrary.api\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|solutionrelative:onlinelibrary.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.api\\controllers\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|solutionrelative:onlinelibrary.api\\controllers\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.api\\controllers\\loancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|solutionrelative:onlinelibrary.api\\controllers\\loancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\dtos\\bookdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\dtos\\bookdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\dtos\\loandtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\dtos\\loandtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\dtos\\pagedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\dtos\\pagedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\extensions\\queryableextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\extensions\\queryableextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\common\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\common\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58DCCD45-0B05-E682-71A1-2ADBEB905BEC}|OnlineLibrary.Infrastructure\\OnlineLibrary.Infrastructure.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.infrastructure\\onlinelibrary.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{58DCCD45-0B05-E682-71A1-2ADBEB905BEC}|OnlineLibrary.Infrastructure\\OnlineLibrary.Infrastructure.csproj|solutionrelative:onlinelibrary.infrastructure\\onlinelibrary.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.application\\onlinelibrary.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3A045710-1850-6323-7FBD-52960F94243E}|OnlineLibrary.Application\\OnlineLibrary.Application.csproj|solutionrelative:onlinelibrary.application\\onlinelibrary.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.api\\onlinelibrary.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|solutionrelative:onlinelibrary.api\\onlinelibrary.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|solutionrelative:onlinelibrary.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58DCCD45-0B05-E682-71A1-2ADBEB905BEC}|OnlineLibrary.Infrastructure\\OnlineLibrary.Infrastructure.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58DCCD45-0B05-E682-71A1-2ADBEB905BEC}|OnlineLibrary.Infrastructure\\OnlineLibrary.Infrastructure.csproj|solutionrelative:onlinelibrary.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|solutionrelative:onlinelibrary.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{581BA505-766F-8190-ABC8-FF443FA8D227}|OnlineLibrary.API\\OnlineLibrary.API.csproj|solutionrelative:onlinelibrary.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DABBE01D-793E-533D-E4A9-59EEFA9288DD}|OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj|d:\\projects\\web\\onlinelibrary\\onlinelibrary.domain\\onlinelibrary.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{DABBE01D-793E-533D-E4A9-59EEFA9288DD}|OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj|solutionrelative:onlinelibrary.domain\\onlinelibrary.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\BookService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\BookService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\BookService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\BookService.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwEYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T01:28:04.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.API\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "OnlineLibrary.API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAUwBUAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T05:13:01.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\appsettings.json",
+              "RelativeDocumentMoniker": "OnlineLibrary.API\\appsettings.json",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\appsettings.json",
+              "RelativeToolTip": "OnlineLibrary.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-21T09:12:38.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ILoanService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\ILoanService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\ILoanService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\ILoanService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\ILoanService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T08:32:16.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserAdminService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\UserAdminService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\UserAdminService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\UserAdminService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\UserAdminService.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAUwCsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T06:18:15.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoanService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\LoanService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\LoanService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\LoanService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\LoanService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T08:35:28.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoanAdminService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\LoanAdminService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\LoanAdminService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\LoanAdminService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\LoanAdminService.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAswEkAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T07:08:47.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IUserAdminService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\IUserAdminService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\IUserAdminService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\IUserAdminService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\IUserAdminService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T09:35:04.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ILoanAdminService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\ILoanAdminService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\ILoanAdminService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\ILoanAdminService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\ILoanAdminService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T09:38:37.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IBookService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\IBookService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\IBookService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\IBookService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\IBookService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T15:08:35.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IBookAdminService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\IBookAdminService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\IBookAdminService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\IBookAdminService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\IBookAdminService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T09:28:47.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "BookAdminService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\BookAdminService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\BookAdminService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\BookAdminService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\BookAdminService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAowIUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T09:42:31.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AuthDtos.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\DTOs\\AuthDtos.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\DTOs\\AuthDtos.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\DTOs\\AuthDtos.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\DTOs\\AuthDtos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T10:02:07.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Services\\AuthService.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Services\\AuthService.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Services\\AuthService.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAFIAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T02:36:28.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Domain\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Domain\\Entities\\User.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Domain\\Entities\\User.cs",
+              "RelativeToolTip": "OnlineLibrary.Domain\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T08:35:41.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Book.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Domain\\Entities\\Book.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Domain\\Entities\\Book.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Domain\\Entities\\Book.cs",
+              "RelativeToolTip": "OnlineLibrary.Domain\\Entities\\Book.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T08:35:51.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "BookInventory.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Domain\\Entities\\BookInventory.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Domain\\Entities\\BookInventory.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Domain\\Entities\\BookInventory.cs",
+              "RelativeToolTip": "OnlineLibrary.Domain\\Entities\\BookInventory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T08:36:13.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "LoanRequest.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Domain\\Entities\\LoanRequest.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Domain\\Entities\\LoanRequest.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Domain\\Entities\\LoanRequest.cs",
+              "RelativeToolTip": "OnlineLibrary.Domain\\Entities\\LoanRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T08:36:22.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.API\\Controllers\\BookController.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Controllers\\BookController.cs",
+              "RelativeToolTip": "OnlineLibrary.API\\Controllers\\BookController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwBgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T15:07:08.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.API\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "OnlineLibrary.API\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAkwGUAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T06:42:34.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "UploadController.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Controllers\\UploadController.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.API\\Controllers\\UploadController.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Controllers\\UploadController.cs",
+              "RelativeToolTip": "OnlineLibrary.API\\Controllers\\UploadController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwCYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T02:54:17.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "LoanController.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Controllers\\LoanController.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.API\\Controllers\\LoanController.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Controllers\\LoanController.cs",
+              "RelativeToolTip": "OnlineLibrary.API\\Controllers\\LoanController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T09:11:54.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "BookDtos.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\DTOs\\BookDtos.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\DTOs\\BookDtos.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\DTOs\\BookDtos.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\DTOs\\BookDtos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T10:02:20.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "LoanDtos.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\DTOs\\LoanDtos.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\DTOs\\LoanDtos.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\DTOs\\LoanDtos.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\DTOs\\LoanDtos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T10:02:31.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "PagedResult.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\DTOs\\PagedResult.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\DTOs\\PagedResult.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\DTOs\\PagedResult.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\DTOs\\PagedResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T07:39:39.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "QueryableExtensions.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Extensions\\QueryableExtensions.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Extensions\\QueryableExtensions.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Extensions\\QueryableExtensions.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Extensions\\QueryableExtensions.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T07:53:53.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Result.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Common\\Result.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\Common\\Result.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\Common\\Result.cs",
+              "RelativeToolTip": "OnlineLibrary.Application\\Common\\Result.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T02:45:31.131Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "OnlineLibrary.Infrastructure.csproj",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Infrastructure\\OnlineLibrary.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "OnlineLibrary.Infrastructure\\OnlineLibrary.Infrastructure.csproj",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Infrastructure\\OnlineLibrary.Infrastructure.csproj",
+              "RelativeToolTip": "OnlineLibrary.Infrastructure\\OnlineLibrary.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAUwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-28T07:45:36.998Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "OnlineLibrary.Application.csproj",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\OnlineLibrary.Application.csproj",
+              "RelativeDocumentMoniker": "OnlineLibrary.Application\\OnlineLibrary.Application.csproj",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Application\\OnlineLibrary.Application.csproj",
+              "RelativeToolTip": "OnlineLibrary.Application\\OnlineLibrary.Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-21T07:16:24.998Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "OnlineLibrary.API.csproj",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\OnlineLibrary.API.csproj",
+              "RelativeDocumentMoniker": "OnlineLibrary.API\\OnlineLibrary.API.csproj",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\OnlineLibrary.API.csproj",
+              "RelativeToolTip": "OnlineLibrary.API\\OnlineLibrary.API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-21T07:13:36.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Program.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.API\\Program.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Program.cs",
+              "RelativeToolTip": "OnlineLibrary.API\\Program.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAswHgAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T09:25:24.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "OnlineLibrary.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "OnlineLibrary.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA9wDAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T08:54:31.334Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "OnlineLibrary.API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "OnlineLibrary.API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-25T03:54:08.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Dockerfile",
+              "RelativeDocumentMoniker": "OnlineLibrary.API\\Dockerfile",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.API\\Dockerfile",
+              "RelativeToolTip": "OnlineLibrary.API\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-10-21T07:09:41.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "OnlineLibrary.Domain.csproj",
+              "DocumentMoniker": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj",
+              "RelativeDocumentMoniker": "OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj",
+              "ToolTip": "D:\\projects\\Web\\OnlineLibrary\\OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj",
+              "RelativeToolTip": "OnlineLibrary.Domain\\OnlineLibrary.Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-21T07:17:13.768Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

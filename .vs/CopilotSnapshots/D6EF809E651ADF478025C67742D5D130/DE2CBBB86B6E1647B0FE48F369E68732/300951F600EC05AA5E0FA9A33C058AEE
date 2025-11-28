@@ -1,0 +1,63 @@
+﻿namespace OnlineLibrary.Application.Common
+{
+    /// <summary>
+    ///  Phiên bản không có giá trị trả về, chỉ báo thành công hay thất bại
+    /// </summary>
+    public class Result
+    {
+        public bool IsSuccess { get; }
+        public string Error { get; }
+
+        protected Result(bool isSuccess, string error)
+        {
+            IsSuccess = isSuccess;
+            Error = error;
+        }
+
+        public static Result Ok()
+        {
+            return new Result(true, string.Empty);
+        }
+
+        public static Result Fail(string message)
+        {
+            return new Result(false, message);
+        }
+
+        // Provide a generic method to convert Result<T> to non-generic Result
+        public static Result From<T>(Result<T> v)
+        {
+            return v.IsSuccess ? Ok() : Fail(v.Error);
+        }
+    }
+
+    /// <summary>
+    /// Phiên bản có giá trị trả về (generic)
+    /// </summary>
+    public class Result<T> : Result
+    {
+        public T Value { get; }
+
+        protected Result(T value, bool isSuccess, string error) : base(isSuccess, error)
+        {
+            Value = value;
+        }
+
+        public static Result<T> Ok(T value)
+        {
+            return new Result<T>(value, true, string.Empty);
+        }
+
+        public new static Result<T> Fail(string message)
+        {
+            // Sử dụng default(T) cho giá trị khi thất bại
+            return new Result<T>(default(T), false, message);
+        }
+
+        // Helper to convert this Result<T> to non-generic Result
+        public Result ToResult()
+        {
+            return From(this);
+        }
+    }
+}

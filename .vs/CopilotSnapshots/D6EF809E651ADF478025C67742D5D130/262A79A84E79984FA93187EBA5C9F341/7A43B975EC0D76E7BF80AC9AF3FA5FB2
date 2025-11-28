@@ -1,0 +1,64 @@
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineLibrary.Application.Common;
+using OnlineLibrary.Application.DTOs;
+using OnlineLibrary.Infrastructure.Data;
+
+namespace OnlineLibrary.Application.Services
+{
+    public class BookService : IBookService
+    {
+        private readonly ApplicationDbContext _context;
+
+        public BookService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<Result<BookDto>> GetBookByIdAsync(int id)
+        {
+            var bookDto = await _context.Books
+                .Include(b => b.Inventory)
+                .Where(b => b.Id == id)
+                .Select(b => new BookDto(
+                    b.Id,
+                    b.Title,
+                    b.Author,
+                    b.Genre,
+                    b.Inventory != null ? b.Inventory.Quantity : 0,
+                    b.Inventory != null ? b.Inventory.Status : "Không rõ"
+                 ))
+                .FirstOrDefaultAsync();
+
+            if (bookDto == null)
+            {
+                return Result<BookDto>.Fail("Không tìm thấy sách.");
+            }
+
+            return Result<BookDto>.Ok(bookDto);
+        }
+
+        public async Task<IEnumerable<BookDto>> SearchBooksAsync(string keyword)
+        {
+            var query = _context.Books.Include(b => b.Inventory);
+
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                string lowerKeyword = keyword.ToLower();
+                query = query.Where(b => b.Title.ToLower().Contains(lowerKeyword) ||
+                                         b.Author.ToLower().Contains(lowerKeyword));
+            }
+
+            return await query
+                .OrderBy(b => b.Title)
+                .Select(b => new BookDto(
+                    b.Id,
+                    b.Title,
+                    b.Author,
+                    b.Genre,
+                    b.Inventory != null ? b.Inventory.Quantity : 0,
+                    b.Inventory != null ? b.Inventory.Status : "Không rõ"
+                 ))
+                .ToListAsync();
+        }
+    }
+}

@@ -1,0 +1,10 @@
+﻿using OnlineLibrary.Application.DTOs;
+
+namespace OnlineLibrary.Application.Services
+{
+    public interface IAuthService
+    {
+        Task<AuthResponseDto> RegisterAsync(string username, string password);
+        Task<AuthResponseDto> LoginAsync(string username, string password);
+    }
+}

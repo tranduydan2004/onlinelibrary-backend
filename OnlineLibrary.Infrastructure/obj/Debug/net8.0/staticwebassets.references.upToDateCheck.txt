@@ -1,0 +1,2 @@
+D:\projects\Web\OnlineLibrary\OnlineLibrary.Domain\obj\Debug\net8.0\staticwebassets.build.json
+D:\projects\Web\OnlineLibrary\OnlineLibrary.Domain\obj\Debug\net8.0\staticwebassets.build.json

@@ -1,0 +1,40 @@
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineLibrary.Application.Common;
+using OnlineLibrary.Application.DTOs;
+using OnlineLibrary.Infrastructure.Data;
+
+namespace OnlineLibrary.Application.Services
+{
+    public class UserAdminService : IUserAdminService
+    {
+        private readonly ApplicationDbContext _context;
+        public UserAdminService(ApplicationDbContext context) { _context = context; }
+
+        public async Task<Result<string>> ToggleUserLockAsync(int userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return Result<string>.Fail("Không tìm thấy người dùng.");
+            if (user.Role == "Admin") return Result<string>.Fail("Không thể khóa tài khoản Admin.");
+
+            // Logic "toggle" (lật/chuyển đổi)
+            user.IsLocked = !user.IsLocked; // Nếu tài khoản chưa khóa, logic này sẽ gán giá trị mới sẽ trở thành tài khoản bị khóa và ngược lại
+            await _context.SaveChangesAsync();
+
+            string message = user.IsLocked ? "Đã khóa tài khoản thành công." : "Đã mở khóa tài khoản thành công.";
+            return Result<string>.Ok(message);
+        }
+
+        public async Task<PagedResult<AdminUserDto>> GetAllUsersAsync(int pageNumber, int pageSize)
+        {
+            return await _context.Users
+                .OrderBy(u => u.Username)
+                .Select(u => new AdminUserDto(
+                    u.Id,
+                    u.Username,
+                    u.Role,
+                    u.IsLocked
+                 ))
+                .ToListAsync();
+        }
+    }
+}

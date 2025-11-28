@@ -1,0 +1,25 @@
+﻿using OnlineLibrary.Application.Common;
+using OnlineLibrary.Infrastructure.Data;
+
+namespace OnlineLibrary.Application.Services
+{
+    public class UserAdminService : IUserAdminService
+    {
+        private readonly ApplicationDbContext _context;
+        public UserAdminService(ApplicationDbContext context) { _context = context; }
+
+        public async Task<Result> ToggleUserLockStatusAsync(int userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return Result.Fail("Không tìm thấy người dùng.");
+            if (user.Role == "Admin") return Result.Fail("Không thể khóa tài khoản Admin.");
+
+            // Logic "toggle" (lật/chuyển đổi)
+            user.IsLocked = !user.IsLocked; // Nếu tài khoản chưa khóa, logic này sẽ gán giá trị mới sẽ trở thành tài khoản bị khóa và ngược lại
+            await _context.SaveChangesAsync();
+
+            string message = user.IsLocked ? "Đã khóa tài khoản thành công." : "Đã mở khóa tài khoản thành công.";
+            return Result.Ok(message);
+        }
+    }
+}
