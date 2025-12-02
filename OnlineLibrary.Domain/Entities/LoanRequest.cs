@@ -15,5 +15,8 @@ namespace OnlineLibrary.Domain.Entities
         // Foreign Key đến bảng Book
         public int BookId { get; set; }
         public Book Book { get; set; }
+
+        // Số lần đã gia hạn
+        public int ExtensionCount { get; set; } = 0;
     }
 }

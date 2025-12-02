@@ -31,4 +31,4 @@ D:\projects\Web\OnlineLibrary\OnlineLibrary.Domain\obj\Debug\net8.0\refint\Onlin
 D:\projects\Web\OnlineLibrary\OnlineLibrary.Domain\obj\Debug\net8.0\OnlineLibrary.Domain.pdb
 D:\projects\Web\OnlineLibrary\OnlineLibrary.Domain\obj\Debug\net8.0\OnlineLibrary.Domain.genruntimeconfig.cache
 D:\projects\Web\OnlineLibrary\OnlineLibrary.Domain\obj\Debug\net8.0\ref\OnlineLibrary.Domain.dll
-D:\projects\Web\OnlineLibrary\OnlineLibrary.Domain\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\projects\Web\OnlineLibrary\OnlineLibrary.Domain\obj\Debug\net8.0\OnlineLibrary.Domain.sourcelink.json
