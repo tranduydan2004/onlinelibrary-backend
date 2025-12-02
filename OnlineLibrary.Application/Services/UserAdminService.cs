@@ -33,7 +33,9 @@ namespace OnlineLibrary.Application.Services
                     u.Id,
                     u.Username,
                     u.Role,
-                    u.IsLocked
+                    u.IsLocked,
+                    u.Email,
+                    u.PhoneNumber
                  ))
                 .AsNoTracking();
 

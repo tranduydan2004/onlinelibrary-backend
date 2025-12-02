@@ -67,5 +67,65 @@ namespace OnlineLibrary.Application.Services
 
             return await dtoQuery.ToPagedResultAsync(pageNumber, pageSize);
         }
+
+        // Lấy danh sách thể loại
+        public async Task<PagedResult<GenreDto>> GetGenresAsync(string? search, int pageNumber, int pageSize)
+        {
+            if (pageNumber < 1) pageNumber = 1;
+            if (pageSize < 1) pageSize = 10;
+
+            var grouped = await _context.Books
+                .AsNoTracking()
+                .Where(b => !string.IsNullOrEmpty(b.Genre))
+                .GroupBy(b => b.Genre!)
+                .Select(g => new GenreDto(
+                    g.Key,
+                    g.Count()
+                 ))
+                .ToListAsync();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                var term = search.Trim().ToLower();
+                grouped = grouped
+                    .Where(g => g.Name.ToLower().Contains(term))
+                    .ToList();
+            }
+
+            grouped = grouped.OrderBy(g => g.Name).ToList();
+
+            var totalItems = grouped.Count;
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            var skip = (pageNumber - 1) * pageSize;
+
+            var items = grouped
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+
+            return new PagedResult<GenreDto>(items, totalItems, pageNumber, totalPages);
+        }
+
+        // Tìm sách theo thể loại
+        public async Task<PagedResult<BookDto>> SearchBooksByGenreAsync(string genre, int pageNumber, int pageSize)
+        {
+            IQueryable<Book> books = _context.Books
+                .Where(b => b.Genre == genre);
+
+            var dtoQuery = books
+                .Include(b => b.Inventory)
+                .OrderBy(b => b.Title)
+                .Select(b => new BookDto(
+                    b.Id,
+                    b.Title,
+                    b.Author,
+                    b.Genre,
+                    b.Inventory != null ? b.Inventory.Quantity : 0,
+                    b.Inventory != null ? b.Inventory.Status : "Không rõ",
+                    b.CoverImageUrl
+                 ));
+
+            return await dtoQuery.ToPagedResultAsync(pageNumber, pageSize);
+        }
     }
 }

@@ -5,7 +5,10 @@ namespace OnlineLibrary.Application.Services
 {
     public interface IAuthService
     {
-        Task<Result<AuthResponseDto>> RegisterAsync(string username, string password);
+        Task<Result> RegisterAsync(RegisterDto dto);
         Task<Result<AuthResponseDto>> LoginAsync(string username, string password);
+        Task<Result> VerifyEmailAsync(VerifyEmailDto dto);
+        Task<Result> SendPasswordResetOtpAsync(ForgotPasswordDto dto);
+        Task<Result> ResetPasswordAsync(ResetPasswordDto dto);
     }
 }

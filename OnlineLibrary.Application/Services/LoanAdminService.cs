@@ -18,7 +18,7 @@ namespace OnlineLibrary.Application.Services
                 return Result.Fail("Yêu cầu không hợp lệ hoặc đã được xử lý.");
 
             request.Status = "Đang mượn";
-            request.DueDate = DateTimeOffset.UtcNow.AddDays(14); // Mượn trong 14 ngày
+            request.DueDate = DateTimeOffset.UtcNow.AddDays(7); // Mượn trong 7 ngày
             await _context.SaveChangesAsync();
             return Result.Ok();
         }

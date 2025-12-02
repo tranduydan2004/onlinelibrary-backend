@@ -7,5 +7,11 @@ namespace OnlineLibrary.Application.Services
     {
         Task<PagedResult<BookDto>> SearchBooksAsync(string? keyword, int pageNumber, int pageSize);
         Task<Result<BookDto>> GetBookByIdAsync(int id);
+
+        // Danh sách thể loại
+        Task<PagedResult<GenreDto>> GetGenresAsync(string? search, int pageNumber, int pageSize);
+
+        // Tìm sách theo thể loại
+        Task<PagedResult<BookDto>> SearchBooksByGenreAsync(string genre, int pageNumber, int pageSize);
     }
 }
