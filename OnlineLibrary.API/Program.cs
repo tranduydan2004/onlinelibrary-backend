@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.OpenApi.Models; // Dùng cho cấu hình Swagger 
 using OnlineLibrary.Application.Services;
 using Microsoft.Extensions.FileProviders;
+using OnlineLibrary.Application.Common;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +34,7 @@ builder.Services.AddScoped<IBookAdminService, BookAdminService>();
 builder.Services.AddScoped<IUserAdminService, UserAdminService>();
 builder.Services.AddScoped<ILoanAdminService, LoanAdminService>();
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IEmailSender, StmpEmailSender>();
 
 // 1.4 Cấu hình xác thực JWT (Authentication)
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
