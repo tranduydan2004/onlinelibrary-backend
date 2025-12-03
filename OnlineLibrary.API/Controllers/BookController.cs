@@ -35,5 +35,26 @@ namespace OnlineLibrary.API.Controllers
             }
             return Ok(result.Value);
         }
+
+        // Lấy danh sách thể loại
+        [HttpGet("genres")]
+        public async Task<IActionResult> GetGenres([FromQuery] string? search = null, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var genres = await _bookService.GetGenresAsync(search, pageNumber, pageSize);
+            return Ok(genres);
+        }
+
+        // Lấy sách theo thể loại
+        [HttpGet("by-genre")]
+        public async Task<IActionResult> GetBooksByGenre([FromQuery] string genre, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            if (string.IsNullOrWhiteSpace(genre))
+            {
+                return BadRequest(new { error = "Thể loại không được để trống." });
+            }
+
+            var books = await _bookService.SearchBooksByGenreAsync(genre, pageNumber, pageSize);
+            return Ok(books);
+        }
     }
 }
