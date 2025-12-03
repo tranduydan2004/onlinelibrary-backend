@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using OnlineLibrary.Infrastructure.Data;
@@ -11,9 +12,11 @@ using OnlineLibrary.Infrastructure.Data;
 namespace OnlineLibrary.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251130014604_AddContactFieldsToUser")]
+    partial class AddContactFieldsToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,9 +93,6 @@ namespace OnlineLibrary.Infrastructure.Migrations
                     b.Property<DateTimeOffset?>("DueDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("ExtensionCount")
-                        .HasColumnType("integer");
-
                     b.Property<DateTimeOffset>("RequestDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -138,12 +138,6 @@ namespace OnlineLibrary.Infrastructure.Migrations
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<string>("PasswordResetOtpCode")
-                        .HasColumnType("text");
-
-                    b.Property<DateTimeOffset?>("PasswordResetOtpExpiry")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
