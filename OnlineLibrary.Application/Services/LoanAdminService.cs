@@ -64,11 +64,27 @@ namespace OnlineLibrary.Application.Services
             return Result.Ok();
         }
 
-        public async Task<PagedResult<AdminLoanDto>> GetAllLoansAsync(int pageNumber, int pageSize)
+        public async Task<PagedResult<AdminLoanDto>> GetAllLoansAsync(int pageNumber, int pageSize, DateTimeOffset? fromDate, DateTimeOffset? toDate)
         {
             var query = _context.LoanRequests
                 .Include(l => l.Book)
                 .Include(l => l.User)
+                .AsQueryable();
+
+            // Filter theo ngày
+            if (fromDate.HasValue)
+            {
+                query = query.Where(l => l.RequestDate >= fromDate.Value);
+            }
+
+            if (toDate.HasValue)
+            {
+                // Lấy đến hết ngày toDate ( < ngày + 1 )
+                var endExclusive = toDate.Value.Date.AddDays(1);
+                query = query.Where(l => l.RequestDate < endExclusive);
+            }
+            
+            var projectedQuery = query
                 .OrderByDescending(l => l.RequestDate)
                 .Select(l => new AdminLoanDto(
                     l.Id,
@@ -80,7 +96,7 @@ namespace OnlineLibrary.Application.Services
                  ))
                 .AsNoTracking();
 
-            return await query.ToPagedResultAsync(pageNumber, pageSize);
+            return await projectedQuery.ToPagedResultAsync(pageNumber, pageSize);
         }
     }
 }
