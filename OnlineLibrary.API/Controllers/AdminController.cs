@@ -97,9 +97,9 @@ namespace OnlineLibrary.API.Controllers
         }
 
         [HttpGet("loan/all")]
-        public async Task<IActionResult> GetAllLoans([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10 )
+        public async Task<IActionResult> GetAllLoans([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, DateTimeOffset? fromDate = null, DateTimeOffset? toDate = null)
         {
-            var loans = await _loanAdminService.GetAllLoansAsync(pageNumber, pageSize);
+            var loans = await _loanAdminService.GetAllLoansAsync(pageNumber, pageSize, fromDate, toDate);
             return Ok(loans);
         }
     }
