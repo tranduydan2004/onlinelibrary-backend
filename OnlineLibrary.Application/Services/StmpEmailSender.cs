@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Mail;
 using OnlineLibrary.Application.Common;
+using Microsoft.Extensions.Configuration;
 
 namespace OnlineLibrary.Application.Services
 {
