@@ -35,6 +35,7 @@ builder.Services.AddScoped<IUserAdminService, UserAdminService>();
 builder.Services.AddScoped<ILoanAdminService, LoanAdminService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IEmailSender, StmpEmailSender>();
+builder.Services.AddScoped<IAdminDashboardService, AdminDashboardService>();
 
 // 1.4 Cấu hình xác thực JWT (Authentication)
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

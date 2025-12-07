@@ -14,12 +14,14 @@ namespace OnlineLibrary.API.Controllers
         private readonly IBookAdminService _bookAdminService;
         private readonly IUserAdminService _userAdminService;
         private readonly ILoanAdminService _loanAdminService;
+        private readonly IAdminDashboardService _dashboardService;
 
-        public AdminController(IBookAdminService book, IUserAdminService user, ILoanAdminService loan)
+        public AdminController(IBookAdminService book, IUserAdminService user, ILoanAdminService loan, IAdminDashboardService dashboardService)
         {
             _bookAdminService = book;
             _userAdminService = user;
             _loanAdminService = loan;
+            _dashboardService = dashboardService;
         }
 
         // --- QUẢN LÝ SÁCH (CRUD) ---
@@ -101,6 +103,14 @@ namespace OnlineLibrary.API.Controllers
         {
             var loans = await _loanAdminService.GetAllLoansAsync(pageNumber, pageSize, fromDate, toDate);
             return Ok(loans);
+        }
+
+        // --- THỐNG KÊ DASHBOARD ---
+        [HttpGet("dashboard")]
+        public async Task<ActionResult<AdminDashboardStatsDto>> GetDashboard()
+        {
+            var stats = await _dashboardService.GetStatsAsync();
+            return Ok(stats);
         }
     }
 }
