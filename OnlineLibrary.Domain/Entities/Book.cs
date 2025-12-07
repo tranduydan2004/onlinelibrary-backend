@@ -11,6 +11,8 @@ namespace OnlineLibrary.Domain.Entities
         // URL trang bìa (có thể null)
         public string? CoverImageUrl { get; set; }
 
+        public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+
         // Navigation properties: Một sách có một bản ghi kho
         public BookInventory Inventory { get; set; }
 
