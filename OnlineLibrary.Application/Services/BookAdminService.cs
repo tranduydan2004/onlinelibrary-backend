@@ -20,7 +20,8 @@ namespace OnlineLibrary.Application.Services
                 Title = dto.Title,
                 Author = dto.Author,
                 Genre = dto.Genre,
-                CoverImageUrl = dto.CoverImageUrl
+                CoverImageUrl = dto.CoverImageUrl,
+                CreatedAt = DateTimeOffset.UtcNow
             };
 
             var inventory = new BookInventory
