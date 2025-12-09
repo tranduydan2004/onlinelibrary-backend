@@ -57,6 +57,20 @@ namespace OnlineLibrary.API.Controllers
             return Ok(books);
         }
 
+        [HttpGet("book/out-of-stock")]
+        public async Task<IActionResult> GetOutOfStockBooks()
+        {
+            var books = await _bookAdminService.GetOutOfStockBooksAsync();
+            return Ok(books);
+        }
+
+        [HttpGet("book/top-quantity")]
+        public async Task<IActionResult> GetTopQuantityBooks([FromQuery] int topN = 10)
+        {
+            var books = await _bookAdminService.GetTopQuantityBooksAsync(topN);
+            return Ok(books);
+        }
+
         // --- QUẢN LÝ NGƯỜI DÙNG ---
         [HttpPut("user/{id}/toggle-lock")]
         public async Task<IActionResult> ToggleLockUser(int id)
@@ -70,6 +84,13 @@ namespace OnlineLibrary.API.Controllers
         public async Task<IActionResult> GetAllUsers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var users = await _userAdminService.GetAllUsersAsync(pageNumber, pageSize);
+            return Ok(users);
+        }
+
+        [HttpGet("user/locked")]
+        public async Task<IActionResult> GetLockedUsers()
+        {
+            var users = await _userAdminService.GetLockedUsersAsync();
             return Ok(users);
         }
 
