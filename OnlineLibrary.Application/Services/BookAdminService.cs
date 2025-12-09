@@ -130,5 +130,50 @@ namespace OnlineLibrary.Application.Services
 
             return await query.ToPagedResultAsync(pageNumber, pageSize);
         }
+
+        public async Task<List<BookDto>> GetOutOfStockBooksAsync()
+        {
+            var books = await _context.Books
+                .Include(b => b.Inventory)
+                .Where(b => b.Inventory != null && b.Inventory.Quantity == 0)
+                .OrderBy(b => b.Title)
+                .Select(b => new BookDto(
+                    b.Id,
+                    b.Title,
+                    b.Author,
+                    b.Genre,
+                    b.Inventory != null ? b.Inventory.Quantity : 0,
+                    b.Inventory != null ? b.Inventory.Status : "Không rõ",
+                    b.CoverImageUrl
+                 ))
+                .AsNoTracking()
+                .ToListAsync();
+
+            return books;
+        }
+
+        public async Task<List<BookDto>> GetTopQuantityBooksAsync(int topN)
+        {
+            if (topN <= 0) topN = 10;
+
+            var books = await _context.Books
+                .Include(b => b.Inventory)
+                .OrderByDescending(b => b.Inventory != null ? b.Inventory.Quantity : 0)
+                .ThenBy(b => b.Title)
+                .Select(b => new BookDto(
+                    b.Id,
+                    b.Title,
+                    b.Author,
+                    b.Genre,
+                    b.Inventory != null ? b.Inventory.Quantity : 0,
+                    b.Inventory != null ? b.Inventory.Status : "Không rõ",
+                    b.CoverImageUrl
+                 ))
+                .Take(topN)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return books;
+        }
     }
 }

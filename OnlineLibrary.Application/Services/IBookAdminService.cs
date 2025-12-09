@@ -10,5 +10,8 @@ namespace OnlineLibrary.Application.Services
         Task<Result> UpdateBookAsync(int id, BookUpdateDto dto);
         Task<Result> DeleteBookAsync(int id);
         Task<PagedResult<BookDto>> GetAllBooksAsync(int pageNumber, int pageSize);
+
+        Task<List<BookDto>> GetOutOfStockBooksAsync();
+        Task<List<BookDto>> GetTopQuantityBooksAsync(int topN);
     }
 }
