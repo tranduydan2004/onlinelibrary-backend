@@ -7,5 +7,6 @@ namespace OnlineLibrary.Application.Services
     {
         Task<Result<string>> ToggleUserLockAsync(int userId);
         Task<PagedResult<AdminUserDto>> GetAllUsersAsync(int pageNumber, int pageSize);
+        Task<List<AdminUserDto>> GetLockedUsersAsync();
     }
 }

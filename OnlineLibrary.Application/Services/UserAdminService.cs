@@ -41,5 +41,23 @@ namespace OnlineLibrary.Application.Services
 
             return await query.ToPagedResultAsync(pageNumber, pageSize);
         }
+
+        public async Task<List<AdminUserDto>> GetLockedUsersAsync()
+        {
+            var query = _context.Users
+                .Where(u => u.IsLocked)
+                .OrderBy(u => u.Username)
+                .Select(u => new AdminUserDto(
+                    u.Id,
+                    u.Username,
+                    u.Role,
+                    u.IsLocked,
+                    u.Email,
+                    u.PhoneNumber
+                 ))
+                .AsNoTracking();
+
+            return await query.ToListAsync();
+        }
     }
 }
