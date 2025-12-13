@@ -34,8 +34,9 @@ builder.Services.AddScoped<IBookAdminService, BookAdminService>();
 builder.Services.AddScoped<IUserAdminService, UserAdminService>();
 builder.Services.AddScoped<ILoanAdminService, LoanAdminService>();
 builder.Services.AddScoped<IBookService, BookService>();
-builder.Services.AddScoped<IEmailSender, StmpEmailSender>();
+builder.Services.AddScoped<IEmailSender, SmtpEmailSender>();
 builder.Services.AddScoped<IAdminDashboardService, AdminDashboardService>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
 
 // 1.4 Cấu hình xác thực JWT (Authentication)
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
