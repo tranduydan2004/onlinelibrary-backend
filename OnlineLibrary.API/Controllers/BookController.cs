@@ -6,7 +6,7 @@ namespace OnlineLibrary.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize] // Yêu cầu người dùng phải đăng nhập để xem/tìm sách
+    //[Authorize] Yêu cầu người dùng phải đăng nhập để xem/tìm sách
     public class BookController : ControllerBase
     {
         private readonly IBookService _bookService;
@@ -18,6 +18,7 @@ namespace OnlineLibrary.API.Controllers
 
         // Tìm kiếm sách có phân trang
         [HttpGet("search")]
+        [AllowAnonymous] // Guest được quyền tìm kiếm sách
         public async Task<IActionResult> SearchBooks([FromQuery] string? keyword = null, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var books = await _bookService.SearchBooksAsync(keyword, pageNumber, pageSize);
@@ -26,6 +27,7 @@ namespace OnlineLibrary.API.Controllers
 
         // Lấy thông tin chi tiết sách theo ID
         [HttpGet("{id:int}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetBookById(int id)
         {
             var result = await _bookService.GetBookByIdAsync(id);
@@ -38,6 +40,7 @@ namespace OnlineLibrary.API.Controllers
 
         // Lấy danh sách thể loại
         [HttpGet("genres")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetGenres([FromQuery] string? search = null, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var genres = await _bookService.GetGenresAsync(search, pageNumber, pageSize);
@@ -46,6 +49,7 @@ namespace OnlineLibrary.API.Controllers
 
         // Lấy sách theo thể loại
         [HttpGet("by-genre")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetBooksByGenre([FromQuery] string genre, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             if (string.IsNullOrWhiteSpace(genre))
