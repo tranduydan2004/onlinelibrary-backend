@@ -9,18 +9,22 @@ Một hệ thống backend mạnh mẽ và linh hoạt dành cho nền tảng Qu
 ## Công nghệ sử dụng
 
 - **Framework:** .NET (C#)
-- **Kiến trúc:** Clean Architecture
+- **Kiến trúc:** Monolithic nhiều lớp và tham khảo mô hình kiến trúc Clean Architecture
 - **Containerization:** Docker & Docker Compose
 - **Database:** PostgreSQL / SQL Server (Cấu hình qua Entity Framework Core)
 
 ## Cấu trúc dự án
 
-Dự án tuân thủ nghiêm ngặt mô hình Clean Architecture với 4 phân hệ (layers) chính:
+Dự án được thực hiện theo kiến trúc Monolithic nhiều lớp và áp dụng nguyên lý phân tầng từ mô hình Clean Architecture với 4 phân hệ (layers) chính:
 
 - `OnlineLibrary.Domain/`: Chứa các Entities, Enums và Core logic của hệ thống. Tầng này độc lập và không phụ thuộc vào bất kỳ tầng nào khác.
 - `OnlineLibrary.Application/`: Chứa Business Logic (Use cases, Interfaces, DTOs). Đóng vai trò cầu nối xử lý các yêu cầu từ API và gọi đến Domain.
 - `OnlineLibrary.Infrastructure/`: Xử lý các tác vụ giao tiếp với bên ngoài như Database (Cấu hình EF Core), Repositories, File system hoặc External APIs.
 - `OnlineLibrary.API/`: Tầng giao diện (RESTful API), đóng vai trò tiếp nhận HTTP requests/responses, Controllers và cấu hình Middleware.
+
+Hệ thống chưa tuân thủ hoàn toàn nguyên lý đảo ngược sự phụ thuộc (Dependency Inversion Principle), mà cho phép các services nằm ở tầng Application sử dụng trực tiếp ApplicationDbContext ở tầng Infrastructure.
+
+Tuy vậy, việc tách mã nguồn theo từng dự án trong C#/.NET (OnlineLibrary.API, OnlineLibrary.Application, OnlineLibrary.Domain, OnlineLibrary.Infrastructure) vẫn giúp mã dễ bảo trì và có thể tái cấu trúc thành kiến trúc sạch hơn trong tương lai.
 
 ## Hướng dẫn cài đặt & Chạy dự án
 
