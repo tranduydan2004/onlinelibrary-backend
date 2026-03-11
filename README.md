@@ -35,7 +35,7 @@ Dự án đã tích hợp sẵn `docker-compose.yml` để dễ dàng đóng gó
 
 1. Clone dự án về máy:
    ```bash
-   git clone [https://github.com/tranduydan2004/onlinelibrary-backend.git](https://github.com/tranduydan2004/onlinelibrary-backend.git)
+   git clone https://github.com/tranduydan2004/onlinelibrary-backend.git
    cd onlinelibrary-backend
 2. Thiết lập các biến môi trường cần thiết tại file .env (nếu cần thay đổi).
 3. Build và khởi chạy các containers:
