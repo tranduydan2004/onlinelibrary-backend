@@ -1,0 +1,25 @@
+# ENV
+.env
+
+# Config secrets
+appsettings.Development.json
+
+# Build
+[Bb]in/
+[Oo]bj/
+
+# VS
+.vs/
+
+# Logs
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# AI
+.ag-skills
