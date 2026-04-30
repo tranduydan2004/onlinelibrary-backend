@@ -1,39 +1,36 @@
-﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using OnlineLibrary.Domain.Entities;
-using OnlineLibrary.Infrastructure.Data;
 using OnlineLibrary.Application.Common;
 using OnlineLibrary.Application.DTOs;
-using System.Security;
-using BCrypt.Net;
+using OnlineLibrary.Application.Interfaces.Repositories;
 
 namespace OnlineLibrary.Application.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
         private readonly IEmailSender _emailSender;
 
-        public AuthService(ApplicationDbContext context, IConfiguration configuration, IEmailSender emailSender)
+        public AuthService(IUserRepository userRepository, IConfiguration configuration, IEmailSender emailSender)
         {
-            _context = context;
+            _userRepository = userRepository;
             _configuration = configuration;
             _emailSender = emailSender;
         }
 
         public async Task<Result> RegisterAsync(RegisterDto dto)
         {
-            if (await _context.Users.AnyAsync(u => u.Username == dto.Username))
+            if (await _userRepository.AnyUsernameAsync(dto.Username))
             {
                 return Result.Fail("Tên đăng nhập đã tồn tại.");
             }
 
-            if (await _context.Users.AnyAsync(u => u.Email == dto.Email))
+            if (await _userRepository.AnyEmailAsync(dto.Email))
             {
                 return Result.Fail("Email đã được sử dụng cho tài khoản khác.");
             }
@@ -56,8 +53,7 @@ namespace OnlineLibrary.Application.Services
             user.EmailOtpCode = otp;
             user.EmailOtpExpiry = DateTimeOffset.UtcNow.AddMinutes(10);
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            await _userRepository.AddUserAsync(user);
 
             // Gửi email xác nhận
             var body =
@@ -68,16 +64,11 @@ namespace OnlineLibrary.Application.Services
             await _emailSender.SendEmailAsync(dto.Email, "Mã xác thực đăng ký thư viện", body);
 
             return Result.Ok();
-
-            //var token = GenerateJwtToken(user);
-            //var response = new AuthResponseDto(token, user.Username, user.Role);
-
-            //return Result<AuthResponseDto>.Ok(response);
         }
 
         public async Task<Result<AuthResponseDto>> LoginAsync(string username, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+            var user = await _userRepository.GetByUsernameAsync(username);
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
             {
@@ -102,7 +93,7 @@ namespace OnlineLibrary.Application.Services
 
         public async Task<Result> VerifyEmailAsync(VerifyEmailDto dto)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == dto.Username);
+            var user = await _userRepository.GetByUsernameAsync(dto.Username);
             if (user == null) return Result.Fail("Không tìm thấy tài khoản.");
 
             if (user.EmailConfirmed) return Result.Ok(); // Tài khoản đã xác thực Email
@@ -121,7 +112,7 @@ namespace OnlineLibrary.Application.Services
             user.EmailOtpCode = null;
             user.EmailOtpExpiry = null;
 
-            await _context.SaveChangesAsync();
+            await _userRepository.UpdateUserAsync(user);
             return Result.Ok();
         }
 
@@ -130,9 +121,7 @@ namespace OnlineLibrary.Application.Services
             // Cho phép nhập username hoặc email
             var input = dto.UsernameOrEmail.Trim();
 
-            var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == input ||
-                                     (u.Email != null && u.Email.ToLower() == input.ToLower()));
+            var user = await _userRepository.GetByUsernameOrEmailAsync(input);
 
             // Để tránh lộ thông tin tồn tại tài khoản, luôn trả Ok
             if (user == null)
@@ -156,7 +145,7 @@ namespace OnlineLibrary.Application.Services
             user.PasswordResetOtpCode = otp;
             user.PasswordResetOtpExpiry = DateTimeOffset.UtcNow.AddMinutes(10);
 
-            await _context.SaveChangesAsync();
+            await _userRepository.UpdateUserAsync(user);
 
             var body =
                 $"Xin chào {user.Username},\n\n" +
@@ -175,8 +164,7 @@ namespace OnlineLibrary.Application.Services
 
         public async Task<Result> ResetPasswordAsync(ResetPasswordDto dto)
         {
-            var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == dto.Username);
+            var user = await _userRepository.GetByUsernameAsync(dto.Username);
 
             if (user == null)
             {
@@ -206,7 +194,7 @@ namespace OnlineLibrary.Application.Services
             user.PasswordResetOtpCode = null;
             user.PasswordResetOtpExpiry = null;
 
-            await _context.SaveChangesAsync();
+            await _userRepository.UpdateUserAsync(user);
             return Result.Ok();
         }
 

@@ -1,27 +1,30 @@
-﻿using OnlineLibrary.Application.DTOs;
+using OnlineLibrary.Application.DTOs;
 using OnlineLibrary.Application.Common;
-using OnlineLibrary.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Domain.Entities;
-using OnlineLibrary.Application.Extensions;
+using OnlineLibrary.Application.Interfaces.Repositories;
 
 namespace OnlineLibrary.Application.Services
 {
     public class LoanService : ILoanService
     {
-        private readonly ApplicationDbContext _context;
-        public LoanService(ApplicationDbContext context) { _context = context; }
+        private readonly ILoanRequestRepository _loanRequestRepository;
+        private readonly IBookRepository _bookRepository;
+
+        public LoanService(ILoanRequestRepository loanRequestRepository, IBookRepository bookRepository) 
+        { 
+            _loanRequestRepository = loanRequestRepository; 
+            _bookRepository = bookRepository;
+        }
 
         public async Task<Result> CreateLoanRequestAsync(int userId, int bookId)
         {
-            var inventory = await _context.BookInventories.FirstOrDefaultAsync(i => i.BookId == bookId);
-            if (inventory == null || inventory.Quantity <= 0)
+            var book = await _bookRepository.GetByIdWithInventoryAsync(bookId);
+            if (book == null || book.Inventory == null || book.Inventory.Quantity <= 0)
             {
                 return Result.Fail("Sách đã hết hoặc không tồn tại.");
             }
 
-            var existingRequest = await _context.LoanRequests
-                .AnyAsync(r => r.UserId == userId && r.BookId == bookId && (r.Status == "Đang chờ duyệt" || r.Status == "Đang mượn"));
+            var existingRequest = await _loanRequestRepository.AnyActiveLoanByUserAndBookAsync(userId, bookId);
             if (existingRequest)
             {
                 return Result.Fail("Bạn đã yêu cầu mượn hoặc đang mượn cuốn sách này.");
@@ -34,9 +37,15 @@ namespace OnlineLibrary.Application.Services
                 RequestDate = DateTimeOffset.UtcNow,
                 Status = "Đang chờ duyệt"
             };
-            _context.LoanRequests.Add(loanRequest);
-            inventory.Quantity--;
-            await _context.SaveChangesAsync();
+            
+            book.Inventory.Quantity--;
+            
+            await _loanRequestRepository.AddLoanRequestAsync(loanRequest);
+            // Việc cập nhật sách sẽ được lưu vào DB, có thể sử dụng UpdateBookAsync nếu cần thiết, 
+            // tuy nhiên AddLoanRequestAsync đã gọi SaveChangesAsync() trên DbContext chung (scoped) 
+            // nên Quantity-- cũng đã được lưu. Dù sao gọi thêm UpdateBookAsync để tường minh:
+            await _bookRepository.UpdateBookAsync(book);
+            
             return Result.Ok();
         }
 
@@ -44,9 +53,9 @@ namespace OnlineLibrary.Application.Services
         {
             const int MaxExtensionCount = 1; // Số lần gia hạn tối đa cho mỗi lần mượn
 
-            var loan = await _context.LoanRequests.FirstOrDefaultAsync(l => l.Id == loadId && l.UserId == userId);
+            var loan = await _loanRequestRepository.GetByIdAsync(loadId);
 
-            if (loan == null) return Result.Fail("Không tìm thấy yêu cầu mượn.");
+            if (loan == null || loan.UserId != userId) return Result.Fail("Không tìm thấy yêu cầu mượn.");
 
             if (loan.Status != "Đang mượn") return Result.Fail("Chỉ có thể gia hạn sách đang muợn.");
 
@@ -58,7 +67,7 @@ namespace OnlineLibrary.Application.Services
             loan.DueDate = (loan.DueDate ?? DateTimeOffset.UtcNow).AddDays(7);
             loan.ExtensionCount++;
 
-            await _context.SaveChangesAsync();
+            await _loanRequestRepository.UpdateLoanRequestAsync(loan);
             return Result.Ok();
         }
 
@@ -67,24 +76,21 @@ namespace OnlineLibrary.Application.Services
             const int MaxExtensionCount = 1;
             var now = DateTimeOffset.UtcNow;
 
-            var query = _context.LoanRequests
-                .Where(r => r.UserId == userId)
-                .Include(r => r.Book)
-                .OrderByDescending(r => r.RequestDate)
-                .Select(r => new LoanHistoryDto(
-                    r.Id,
-                    r.Book != null ? r.Book.Title : "[Sách đã bị xóa]",
-                    r.RequestDate,
-                    r.DueDate,
-                    r.Status,
-                    r.Status == "Đang mượn"
-                        && r.DueDate.HasValue
-                        && r.DueDate.Value >= now
-                        && r.ExtensionCount < MaxExtensionCount
-                 ))
-                .AsNoTracking();
+            var result = await _loanRequestRepository.GetLoanHistoryAsync(userId, pageNumber, pageSize);
 
-            return await query.ToPagedResultAsync(pageNumber, pageSize);
+            var items = result.Items.Select(r => new LoanHistoryDto(
+                r.Id,
+                r.Book != null ? r.Book.Title : "[Sách đã bị xóa]",
+                r.RequestDate,
+                r.DueDate,
+                r.Status,
+                r.Status == "Đang mượn"
+                    && r.DueDate.HasValue
+                    && r.DueDate.Value >= now
+                    && r.ExtensionCount < MaxExtensionCount
+            )).ToList();
+
+            return new PagedResult<LoanHistoryDto>(items, pageNumber, pageSize, result.TotalCount);
         }
     }
 }

@@ -1,28 +1,23 @@
-﻿using OnlineLibrary.Application.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlineLibrary.Infrastructure.Data;
+using OnlineLibrary.Application.Common;
 using OnlineLibrary.Application.DTOs;
+using OnlineLibrary.Application.Interfaces.Repositories;
 
 namespace OnlineLibrary.Application.Services
 {
     public class ProfileService : IProfileService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUserRepository _userRepository;
         public readonly IEmailSender _emailSender;
 
-        public ProfileService(ApplicationDbContext context, IEmailSender emailSender)
+        public ProfileService(IUserRepository userRepository, IEmailSender emailSender)
         {
-            _context = context;
+            _userRepository = userRepository;
             _emailSender = emailSender;
         }
 
         public async Task<UserProfileDto?> GetProfileAsync(int userId)
         {
-            var user = await _context.Users.FindAsync(userId);
+            var user = await _userRepository.GetByIdAsync(userId);
             if (user == null) return null;
 
             return new UserProfileDto(
@@ -37,7 +32,7 @@ namespace OnlineLibrary.Application.Services
 
         public async Task<ProfileUpdateResult> UpdateProfileAsync(int userId, UpdateProfileDto dto)
         {
-            var user = await _context.Users.FindAsync(userId);
+            var user = await _userRepository.GetByIdAsync(userId);
             if (user == null)
             {
                 return new ProfileUpdateResult
@@ -63,7 +58,7 @@ namespace OnlineLibrary.Application.Services
 
                 var otp = new Random().Next(100000, 999999).ToString();
                 user.EmailOtpCode = otp;
-                user.EmailOtpExpiry = DateTime.UtcNow.AddMinutes(10);
+                user.EmailOtpExpiry = DateTimeOffset.UtcNow.AddMinutes(10);
 
                 var body =
                     $"Xin chào {user.Username},\n\n" +
@@ -74,7 +69,7 @@ namespace OnlineLibrary.Application.Services
                 await _emailSender.SendEmailAsync(dto.Email, "Mã xác thực email mới", body);
             }
 
-            await _context.SaveChangesAsync();
+            await _userRepository.UpdateUserAsync(user);
 
             return new ProfileUpdateResult
             {

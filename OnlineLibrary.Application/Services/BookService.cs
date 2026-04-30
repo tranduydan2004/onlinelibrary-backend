@@ -1,131 +1,85 @@
-﻿using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Application.Common;
 using OnlineLibrary.Application.DTOs;
-using OnlineLibrary.Infrastructure.Data;
 using OnlineLibrary.Domain.Entities;
-using OnlineLibrary.Application.Extensions;
+using OnlineLibrary.Application.Interfaces.Repositories;
 
 namespace OnlineLibrary.Application.Services
 {
     public class BookService : IBookService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IBookRepository _bookRepository;
 
-        public BookService(ApplicationDbContext context)
+        public BookService(IBookRepository bookRepository)
         {
-            _context = context;
+            _bookRepository = bookRepository;
         }
 
         public async Task<Result<BookDto>> GetBookByIdAsync(int id)
         {
-            var bookDto = await _context.Books
-                .Include(b => b.Inventory)
-                .Where(b => b.Id == id)
-                .Select(b => new BookDto(
-                    b.Id,
-                    b.Title,
-                    b.Author,
-                    b.Genre,
-                    b.Inventory != null ? b.Inventory.Quantity : 0,
-                    b.Inventory != null ? b.Inventory.Status : "Không rõ",
-                    b.CoverImageUrl
-                 ))
-                .FirstOrDefaultAsync();
+            var book = await _bookRepository.GetByIdWithInventoryAsync(id);
 
-            if (bookDto == null)
+            if (book == null)
             {
                 return Result<BookDto>.Fail("Không tìm thấy sách.");
             }
+
+            var bookDto = new BookDto(
+                book.Id,
+                book.Title,
+                book.Author,
+                book.Genre,
+                book.Inventory != null ? book.Inventory.Quantity : 0,
+                book.Inventory != null ? book.Inventory.Status : "Không rõ",
+                book.CoverImageUrl
+            );
 
             return Result<BookDto>.Ok(bookDto);
         }
 
         public async Task<PagedResult<BookDto>> SearchBooksAsync(string? keyword, int pageNumber, int pageSize)
         {
-            IQueryable<Book> query = _context.Books;
+            var result = await _bookRepository.SearchBooksAsync(keyword, pageNumber, pageSize);
 
-            if (!string.IsNullOrWhiteSpace(keyword))
-            {
-                var pattern = $"%{keyword.Trim()}%"; // PostgreSQL ILIKE pattern
-                query = query.Where(b =>
-                    EF.Functions.ILike((b.Title ?? string.Empty), pattern) ||
-                    EF.Functions.ILike((b.Author ?? string.Empty), pattern));
-            }
+            var items = result.Items.Select(b => new BookDto(
+                b.Id,
+                b.Title,
+                b.Author,
+                b.Genre,
+                b.Inventory != null ? b.Inventory.Quantity : 0,
+                b.Inventory != null ? b.Inventory.Status : "Không rõ",
+                b.CoverImageUrl
+            )).ToList();
 
-            var dtoQuery = query
-                .Include(b => b.Inventory)
-                .OrderBy(b => b.Title)
-                .Select(b => new BookDto(
-                    b.Id,
-                    b.Title,
-                    b.Author,
-                    b.Genre,
-                    b.Inventory != null ? b.Inventory.Quantity : 0,
-                    b.Inventory != null ? b.Inventory.Status : "Không rõ",
-                    b.CoverImageUrl
-                 ));
-
-            return await dtoQuery.ToPagedResultAsync(pageNumber, pageSize);
+            return new PagedResult<BookDto>(items, pageNumber, pageSize, result.TotalCount);
         }
 
-        // Lấy danh sách thể loại
         public async Task<PagedResult<GenreDto>> GetGenresAsync(string? search, int pageNumber, int pageSize)
         {
             if (pageNumber < 1) pageNumber = 1;
             if (pageSize < 1) pageSize = 10;
 
-            var grouped = await _context.Books
-                .AsNoTracking()
-                .Where(b => !string.IsNullOrEmpty(b.Genre))
-                .GroupBy(b => b.Genre!)
-                .Select(g => new GenreDto(
-                    g.Key,
-                    g.Count()
-                 ))
-                .ToListAsync();
-
-            if (!string.IsNullOrWhiteSpace(search))
-            {
-                var term = search.Trim().ToLower();
-                grouped = grouped
-                    .Where(g => g.Name.ToLower().Contains(term))
-                    .ToList();
-            }
-
-            grouped = grouped.OrderBy(g => g.Name).ToList();
-
-            var totalItems = grouped.Count;
-            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
-            var skip = (pageNumber - 1) * pageSize;
-
-            var items = grouped
-                .Skip(skip)
-                .Take(pageSize)
-                .ToList();
-
-            return new PagedResult<GenreDto>(items, totalItems, pageNumber, totalPages);
+            var result = await _bookRepository.GetGenresAsync(search, pageNumber, pageSize);
+            
+            var items = result.Items.Select(g => new GenreDto(g.Name, g.Count)).ToList();
+            
+            return new PagedResult<GenreDto>(items, pageNumber, pageSize, result.TotalCount);
         }
 
-        // Tìm sách theo thể loại
         public async Task<PagedResult<BookDto>> SearchBooksByGenreAsync(string genre, int pageNumber, int pageSize)
         {
-            IQueryable<Book> books = _context.Books
-                .Where(b => b.Genre == genre);
+            var result = await _bookRepository.SearchBooksByGenreAsync(genre, pageNumber, pageSize);
 
-            var dtoQuery = books
-                .Include(b => b.Inventory)
-                .OrderBy(b => b.Title)
-                .Select(b => new BookDto(
-                    b.Id,
-                    b.Title,
-                    b.Author,
-                    b.Genre,
-                    b.Inventory != null ? b.Inventory.Quantity : 0,
-                    b.Inventory != null ? b.Inventory.Status : "Không rõ",
-                    b.CoverImageUrl
-                 ));
+            var items = result.Items.Select(b => new BookDto(
+                b.Id,
+                b.Title,
+                b.Author,
+                b.Genre,
+                b.Inventory != null ? b.Inventory.Quantity : 0,
+                b.Inventory != null ? b.Inventory.Status : "Không rõ",
+                b.CoverImageUrl
+            )).ToList();
 
-            return await dtoQuery.ToPagedResultAsync(pageNumber, pageSize);
+            return new PagedResult<BookDto>(items, pageNumber, pageSize, result.TotalCount);
         }
     }
 }

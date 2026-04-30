@@ -1,21 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Application.DTOs;
-using OnlineLibrary.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OnlineLibrary.Application.Interfaces.Repositories;
 
 namespace OnlineLibrary.Application.Services
 {
     public class AdminDashboardService : IAdminDashboardService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IBookRepository _bookRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly ILoanRequestRepository _loanRequestRepository;
 
-        public AdminDashboardService(ApplicationDbContext context)
+        public AdminDashboardService(
+            IBookRepository bookRepository, 
+            IUserRepository userRepository, 
+            ILoanRequestRepository loanRequestRepository)
         {
-            _context = context;
+            _bookRepository = bookRepository;
+            _userRepository = userRepository;
+            _loanRequestRepository = loanRequestRepository;
         }
 
         public async Task<AdminDashboardStatsDto> GetStatsAsync()
@@ -24,21 +25,14 @@ namespace OnlineLibrary.Application.Services
             var sevenDaysAgo = today.AddDays(-6);
             var monthStart = new DateTimeOffset(new DateTime(today.Year, today.Month, 1), TimeSpan.Zero);
 
-            var totalBooks = await _context.Books.CountAsync();
+            var totalBooks = await _bookRepository.GetTotalBooksCountAsync();
+            var booksAddedToday = await _bookRepository.GetBooksAddedOnDateAsync(today);
+            var booksAddedThisWeek = await _bookRepository.GetBooksAddedSinceAsync(sevenDaysAgo);
+            var booksAddedThisMonth = await _bookRepository.GetBooksAddedSinceAsync(monthStart);
 
-            var booksAddedToday = await _context.Books
-                .CountAsync(b => b.CreatedAt.Date == today);
+            var totalUsers = await _userRepository.GetTotalUsersCountAsync();
 
-            var booksAddedThisWeek = await _context.Books
-                .CountAsync(b => b.CreatedAt.Date >= sevenDaysAgo);
-
-            var booksAddedThisMonth = await _context.Books
-                .CountAsync(b => b.CreatedAt.Date >= monthStart);
-
-            var totalUsers = await _context.Users.CountAsync();
-
-            var pendingLoanRequests = await _context.LoanRequests
-                .CountAsync(l => l.Status == "Đang chờ duyệt");
+            var pendingLoanRequests = await _loanRequestRepository.GetPendingLoanRequestsCountAsync();
 
             return new AdminDashboardStatsDto
             {
