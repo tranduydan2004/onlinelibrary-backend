@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OnlineLibrary.Application\OnlineLibrary.Application.csproj" />
     <ProjectReference Include="..\OnlineLibrary.Domain\OnlineLibrary.Domain.csproj" />
   </ItemGroup>
 

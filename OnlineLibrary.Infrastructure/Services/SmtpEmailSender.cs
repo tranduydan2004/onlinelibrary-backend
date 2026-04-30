@@ -2,14 +2,15 @@
 using System.Net.Mail;
 using OnlineLibrary.Application.Common;
 using Microsoft.Extensions.Configuration;
+using OnlineLibrary.Application.Services;
 
-namespace OnlineLibrary.Application.Services
+namespace OnlineLibrary.Infrastructure.Services
 {
-    public class StmpEmailSender : IEmailSender
+    public class SmtpEmailSender : IEmailSender
     {
         private readonly IConfiguration _configuration;
 
-        public StmpEmailSender(IConfiguration configuration)
+        public SmtpEmailSender(IConfiguration configuration)
         {
             _configuration = configuration;
         }
