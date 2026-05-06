@@ -47,16 +47,41 @@ services:
       Jwt__Key: ${JWT_KEY}
       Jwt__Issuer: ${JWT_ISSUER}
       Jwt__Audience: ${JWT_AUDIENCE}
+      
+      # Ghi đè SMTP từ .env
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_FROM: ${SMTP_FROM}
     networks:
       - library-network
     depends_on:
       onlinelibrary-db:
         # Chỉ khởi chạy API khi DB đã ở trạng thái 'healthy'
         condition: service_healthy
+  
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: online_library_n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://localhost:5678/
+      - GENERIC_TIMEZONE=Asia/Ho_Chi_Minh # Cài múi giờ VN để sau này làm tính năng Nhắc trả sách (Cronjob) cho chuẩn
+    volumes:
+      - n8n_data:/home/node/.n8n # Ánh xạ ổ cứng để không bị mất Workflow khi khởi động lại Docker
+    networks:
+      - library-network
 
 # Định nghĩa volumes (để lưu trữ data)
 volumes:
   postgres-data:
+    driver: local
+  n8n_data:
     driver: local
 
 # Định nghĩa network (để 2 container thấy nhau)
