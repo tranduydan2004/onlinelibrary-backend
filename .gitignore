@@ -2,6 +2,7 @@
 .env
 
 # Config secrets
+appsettings.json
 appsettings.Development.json
 
 # Build
