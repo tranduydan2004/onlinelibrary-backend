@@ -1,21 +1,59 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using OnlineLibrary.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models; // Dùng cho cấu hình Swagger 
 using OnlineLibrary.Application.Services;
+using OnlineLibrary.Infrastructure.Services;
 using Microsoft.Extensions.FileProviders;
 using OnlineLibrary.Application.Common;
+using OnlineLibrary.Application.Interfaces.Repositories;
+using OnlineLibrary.Infrastructure.Repositories;
 
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration; // Lấy IConfiguration
 
+// Load ENV
+builder.Configuration.AddEnvironmentVariables();
+
 // --- 1. ĐĂNG KÝ DỊCH VỤ VÀO CONTAINER (DI) ---
 
-// 1.1 Lấy chuỗi kết nối từ appsettings.json
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// 1.1 Lấy chuỗi kết nối từ Configuration (hỗ trợ cả biến môi trường từ docker-compose)
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+    ?? builder.Configuration["ConnectionStrings:DefaultConnection"];
+
+// Nếu không có, dự phòng bằng cách tự build (hữu ích khi chạy local)
+if (string.IsNullOrEmpty(connectionString))
+{
+    var dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? builder.Configuration["DB_HOST"];
+    var dbPort = Environment.GetEnvironmentVariable("DB_PORT") ?? builder.Configuration["DB_PORT"];
+    var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? builder.Configuration["DB_NAME"];
+    var dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? builder.Configuration["DB_USER"];
+    var dbPass = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? builder.Configuration["DB_PASSWORD"];
+    if (!string.IsNullOrEmpty(dbHost))
+    {
+        connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPass}";
+    }
+}
+builder.Configuration["ConnectionStrings:DefaultConnection"] = connectionString;
+
+// JWT
+if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("JWT_KEY")))
+{
+    builder.Configuration["Jwt:Key"] = Environment.GetEnvironmentVariable("JWT_KEY");
+    builder.Configuration["Jwt:Issuer"] = Environment.GetEnvironmentVariable("JWT_ISSUER");
+    builder.Configuration["Jwt:Audience"] = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
+}
+
+// SMTP
+if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SMTP_USER")))
+{
+    builder.Configuration["Smtp:User"] = Environment.GetEnvironmentVariable("SMTP_USER");
+    builder.Configuration["Smtp:Password"] = Environment.GetEnvironmentVariable("SMTP_PASS");
+    builder.Configuration["Smtp:From"] = Environment.GetEnvironmentVariable("SMTP_FROM");
+}
 
 // Add services to the container.
 
@@ -27,7 +65,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 );
 
 // Các dịch vụ khác (Controllers, Services, Authentication, ...)
-// 1.3 Đăng ký các Service nghiệp vụ (Dependency Injection)
+// 1.3 Đăng ký các Repository và Service nghiệp vụ (Dependency Injection)
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<ILoanRequestRepository, LoanRequestRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<IBookAdminService, BookAdminService>();
@@ -37,6 +78,7 @@ builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IEmailSender, SmtpEmailSender>();
 builder.Services.AddScoped<IAdminDashboardService, AdminDashboardService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddHttpClient<IWebhookService, N8nWebhookService>();
 
 // 1.4 Cấu hình xác thực JWT (Authentication)
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -61,9 +103,11 @@ builder.Services.AddCors(options =>
         policy =>
         {
             // Thay đổi http://localhost:3000 thành địa chỉ của Frontend React
-            policy.WithOrigins("http://localhost:3000")
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
+            policy
+                .AllowAnyOrigin()
+                //.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
         });
 });
 
@@ -111,7 +155,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Online Library API v1"));
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 // Lấy webRootPath
 var webRootPath = app.Environment.WebRootPath
