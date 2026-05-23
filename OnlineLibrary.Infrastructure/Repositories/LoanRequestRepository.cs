@@ -29,13 +29,13 @@ namespace OnlineLibrary.Infrastructure.Repositories
         public async Task<bool> AnyActiveLoanByBookIdAsync(int bookId)
         {
             return await _context.LoanRequests
-                .AnyAsync(l => l.BookId == bookId && l.Status == "Đang mượn");
+                .AnyAsync(l => l.BookId == bookId && l.Status == LoanRequestStatus.Borrowing);
         }
 
         public async Task<bool> AnyActiveLoanByUserAndBookAsync(int userId, int bookId)
         {
             return await _context.LoanRequests
-                .AnyAsync(r => r.UserId == userId && r.BookId == bookId && (r.Status == "Đang chờ duyệt" || r.Status == "Đang mượn"));
+                .AnyAsync(r => r.UserId == userId && r.BookId == bookId && (r.Status == LoanRequestStatus.Pending || r.Status == LoanRequestStatus.Borrowing));
         }
 
         public async Task AddLoanRequestAsync(LoanRequest request)
@@ -100,7 +100,16 @@ namespace OnlineLibrary.Infrastructure.Repositories
 
         public async Task<int> GetPendingLoanRequestsCountAsync()
         {
-            return await _context.LoanRequests.CountAsync(l => l.Status == "Đang chờ duyệt");
+            return await _context.LoanRequests.CountAsync(l => l.Status == LoanRequestStatus.Pending);
+        }
+
+        public async Task<List<LoanRequest>> GetActiveLoansForReminderAsync()
+        {
+            return await _context.LoanRequests
+                .Include(r => r.User)
+                .Include(r => r.Book)
+                .Where(r => r.Status == LoanRequestStatus.Borrowing || r.Status == LoanRequestStatus.DueSoon || r.Status == LoanRequestStatus.Overdue)
+                .ToListAsync();
         }
     }
 }
