@@ -35,7 +35,7 @@ namespace OnlineLibrary.Application.Services
                 UserId = userId,
                 BookId = bookId,
                 RequestDate = DateTimeOffset.UtcNow,
-                Status = "Đang chờ duyệt"
+                Status = LoanRequestStatus.Pending
             };
             
             book.Inventory.Quantity--;
@@ -57,7 +57,7 @@ namespace OnlineLibrary.Application.Services
 
             if (loan == null || loan.UserId != userId) return Result.Fail("Không tìm thấy yêu cầu mượn.");
 
-            if (loan.Status != "Đang mượn") return Result.Fail("Chỉ có thể gia hạn sách đang muợn.");
+            if (loan.Status != LoanRequestStatus.Borrowing) return Result.Fail("Chỉ có thể gia hạn sách đang muợn.");
 
             if (loan.DueDate.HasValue && loan.DueDate.Value < DateTimeOffset.UtcNow) return Result.Fail("Sách đã quá hạn, không thể gia hạn.");
 
@@ -84,7 +84,7 @@ namespace OnlineLibrary.Application.Services
                 r.RequestDate,
                 r.DueDate,
                 r.Status,
-                r.Status == "Đang mượn"
+                r.Status == LoanRequestStatus.Borrowing
                     && r.DueDate.HasValue
                     && r.DueDate.Value >= now
                     && r.ExtensionCount < MaxExtensionCount
