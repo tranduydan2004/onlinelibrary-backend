@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +50,28 @@ namespace OnlineLibrary.Infrastructure.Services
             catch (Exception ex) {
                 // Ghi log nếu có lỗi (tránh làm sập chức năng thêm sách)
                 Console.WriteLine($"Lỗi khi gọi Webhook n8n: {ex.Message}");
+            }
+        }
+
+        public async Task NotifyLoanReminderAsync(IEnumerable<LoanReminderPayload> payloads)
+        {
+            if (!payloads.Any()) return;
+
+            string webhookUrl = _configuration["ExternalServices:N8nReminderWebhookUrl"];
+
+            if (string.IsNullOrEmpty(webhookUrl)) {
+                Console.WriteLine("CẢNH BÁO: Chưa cấu hình N8nReminderWebhookUrl cho n8n!");
+                return;
+            }
+
+            var jsonPayload = JsonSerializer.Serialize(payloads);
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            try {
+                await _httpclient.PostAsync(webhookUrl, content);
+            }
+            catch (Exception ex) {
+                Console.WriteLine($"Lỗi khi gọi Webhook n8n nhắc nhở: {ex.Message}");
             }
         }
     }
