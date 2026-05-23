@@ -10,6 +10,7 @@ using Microsoft.Extensions.FileProviders;
 using OnlineLibrary.Application.Common;
 using OnlineLibrary.Application.Interfaces.Repositories;
 using OnlineLibrary.Infrastructure.Repositories;
+using OnlineLibrary.API.HostedServices;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -79,6 +80,7 @@ builder.Services.AddScoped<IEmailSender, SmtpEmailSender>();
 builder.Services.AddScoped<IAdminDashboardService, AdminDashboardService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddHttpClient<IWebhookService, N8nWebhookService>();
+builder.Services.AddHostedService<DailyLoanReminderJob>();
 
 // 1.4 Cấu hình xác thực JWT (Authentication)
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
