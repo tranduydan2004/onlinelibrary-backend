@@ -13,5 +13,6 @@ namespace OnlineLibrary.Application.Interfaces.Repositories
         Task<(List<LoanRequest> Items, int TotalCount)> GetLoanHistoryAsync(int userId, int pageNumber, int pageSize);
         Task<(List<LoanRequest> Items, int TotalCount)> GetAllLoansAsync(int pageNumber, int pageSize, DateTimeOffset? fromDate, DateTimeOffset? toDate);
         Task<int> GetPendingLoanRequestsCountAsync();
+        Task<List<LoanRequest>> GetActiveLoansForReminderAsync();
     }
 }
